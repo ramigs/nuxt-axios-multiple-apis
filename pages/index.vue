@@ -30,6 +30,19 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo
+  },
+  async asyncData({ app }) {
+    try {
+      const coldplayLyrics = await app.$api.lyrics.getLyrics(
+        'coldplay',
+        'viva la vida'
+      )
+      const genrenator = await app.$api.genrenator.getRandomGenre()
+      console.log(coldplayLyrics)
+      console.log(genrenator)
+    } catch (e) {
+      console.log('error: ', e)
+    }
   }
 }
 </script>
